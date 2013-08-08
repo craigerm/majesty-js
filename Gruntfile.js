@@ -12,7 +12,11 @@ module.exports = function(grunt) {
       sources: 'src/majesty.js',
       options: {
         keepRunner: true,
-        specs: 'spec/*.js'
+        specs: 'spec/*.js',
+        vendor: [
+          'lib/jquery.js',
+          'lib/jasmine-jquery.js'
+        ]
       }
     },
 
