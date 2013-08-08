@@ -14,10 +14,20 @@ module.exports = function(grunt) {
         keepRunner: true,
         specs: 'spec/*.js'
       }
+    },
+
+    watch: {
+      all: {
+        files: ['src/*.js', 'spec/*.js'],
+        tasks: 'jasmine'
+      }
     }
 
   });
+
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
   grunt.registerTask('test', 'jasmine');
   grunt.registerTask('default', ['test']);
 };
