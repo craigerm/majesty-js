@@ -7,7 +7,7 @@
       filtered = elements.filter(function() {
         values = $(this).data('depends-value').split(',');
         for(var i=0; i < values.length; i++) {
-          if(values[i] == searchValue) {
+          if($.trim(values[i]) == searchValue) {
             return true;
           }
         }

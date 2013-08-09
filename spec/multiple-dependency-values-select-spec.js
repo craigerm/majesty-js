@@ -18,4 +18,8 @@ describe('multiple dependent values for selects', function() {
     expect($('#d1')).toBeHidden();
     expect($('#d4')).toBeHidden();
   });
+
+  it('allows whitespace around value', function() {
+    expect($('#d5')).toBeVisible();
+  });
 });
