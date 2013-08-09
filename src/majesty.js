@@ -2,6 +2,19 @@
 
   $.fn.majesty = function() {
 
+    var findMatches = function(searchValue, elements) {
+      // Hack for now. Probably use regex later
+      filtered = elements.filter(function() {
+        values = $(this).data('depends-value').split(',');
+        for(var i=0; i < values.length; i++) {
+          if(values[i] == searchValue) {
+            return true;
+          }
+        }
+      });
+      return filtered;
+    };
+
     return this.each(function() {
 
       self = $(this);
@@ -13,7 +26,7 @@
         name = target.attr('name');
         val = target.val();
         potential = dependents.filter('[data-depends-on=' + name + ']');
-        matched = potential.filter('[data-depends-value="' + val + '"]');
+        matched = findMatches(val, potential);
         potential.hide();
         matched.show();
       });
