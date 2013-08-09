@@ -1,4 +1,4 @@
-majesty-js
+Majesty JS
 ==========
 
 A little framework for handling common form interactions
