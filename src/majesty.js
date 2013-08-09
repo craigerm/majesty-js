@@ -2,6 +2,10 @@
 
   $.fn.majesty = function() {
 
+    var findDependents = function(rootElement) {
+      return rootElement.find('[data-depends-on]');
+    };
+
     var findMatches = function(searchValue, elements) {
       // Hack for now. Probably use regex later
       filtered = elements.filter(function() {
@@ -18,7 +22,7 @@
     return this.each(function() {
 
       self = $(this);
-      dependents = self.find('[data-depends-on]');
+      dependents = findDependents(self);
       dependents.hide();
 
       self.on('change', 'select', function(e) {
