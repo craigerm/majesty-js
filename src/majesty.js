@@ -25,7 +25,7 @@
       dependents = findDependents(self);
       dependents.hide();
 
-      self.on('change', 'select', function(e) {
+      self.on('change', 'select, input:radio', function(e) {
         target = $(e.currentTarget);
         name = target.attr('name');
         val = target.val();
