@@ -9,11 +9,12 @@ Examples
 ========
 
 
-For dependent dropdowns make your markup look like this:
+For dependent dropdowns/radio buttons make your markup look like this:
 
 ```html
 
   <div id="container">
+
     <select name="status"></select>
       <option value="approved">Approved</option>
       <option value="rejected">Rejected</option>
@@ -28,6 +29,14 @@ For dependent dropdowns make your markup look like this:
       This will be shown if the dropdown value is changed 
       to rejected or delayed
     </div>
+
+    <input type="radio" name="userType" value="standard" />Standard User
+    <input type="radio" name="userType" value="admin" />Administrator
+
+    <div data-depends-on="userType" data-depends-value="admin">
+      Advanced configuration for admin users should go here.
+    </div>
+
   </div>
 ```
 
@@ -39,7 +48,7 @@ Call the plugin on some container:
 
 TODO
 =========
-- Add support for checkboxes + radios
+- Add support for checkboxes
 
 License
 =========
