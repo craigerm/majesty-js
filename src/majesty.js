@@ -7,9 +7,24 @@
     };
 
     var findMatches = function(searchValue, elements) {
+
+      searchValue = $.trim(searchValue);
+
+      if(searchValue === '') {
+        return $([]);
+      }
+
       // Hack for now. Probably use regex later
       filtered = elements.filter(function() {
-        values = $(this).data('depends-value').split(',');
+
+        var dependsValue = $(this).data('depends-value');
+
+        if (dependsValue === '*') {
+          return true;
+        }
+
+        var values = dependsValue.split(',');
+
         for(var i=0; i < values.length; i++) {
           if($.trim(values[i]) == searchValue) {
             return true;
