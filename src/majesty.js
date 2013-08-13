@@ -1,38 +1,38 @@
 (function($) {
 
-  $.fn.majesty = function() {
+  var findDependents = function(rootElement) {
+    return rootElement.find('[data-depends-on]');
+  };
 
-    var findDependents = function(rootElement) {
-      return rootElement.find('[data-depends-on]');
-    };
+  var findMatches = function(searchValue, elements) {
 
-    var findMatches = function(searchValue, elements) {
+    searchValue = $.trim(searchValue);
 
-      searchValue = $.trim(searchValue);
+    if(searchValue === '') {
+      return $([]);
+    }
 
-      if(searchValue === '') {
-        return $([]);
+    // Hack for now. Probably use regex later
+    filtered = elements.filter(function() {
+
+      var dependsValue = $(this).data('depends-value');
+
+      if (dependsValue === '*') {
+        return true;
       }
 
-      // Hack for now. Probably use regex later
-      filtered = elements.filter(function() {
+      var values = dependsValue.split(',');
 
-        var dependsValue = $(this).data('depends-value');
-
-        if (dependsValue === '*') {
+      for(var i=0; i < values.length; i++) {
+        if($.trim(values[i]) == searchValue) {
           return true;
         }
+      }
+    });
+    return filtered;
+  };
 
-        var values = dependsValue.split(',');
-
-        for(var i=0; i < values.length; i++) {
-          if($.trim(values[i]) == searchValue) {
-            return true;
-          }
-        }
-      });
-      return filtered;
-    };
+  $.fn.majesty = function() {
 
     return this.each(function() {
 
